@@ -29,13 +29,12 @@ namespace crudBundle.Controllers
         private readonly IPersonsUpdaterService _personsUpdaterService;
 
         private readonly ICountriesGetterService _countriesGetterService;
-        private readonly ICountriesAdderService _countriesAdderService;
-        private readonly ICountriesUploaderService _countriesUploaderService;
+
         private readonly ILogger<PersonsController> _logger;
 
         public PersonsController(IPersonsGetterService personsGetterService, IPersonsAdderService personsAdderService, 
             IPersonsDeleterService personsDeleterService, IPersonsUpdaterService personsUpdaterService, IPersonsSorterService personsSorterService, 
-            ICountriesGetterService countriesGetterService, ICountriesAdderService countriesAdderService, ICountriesUploaderService countriesUploaderService, ILogger<PersonsController> logger)
+            ICountriesGetterService countriesGetterService, ILogger<PersonsController> logger)
         {
             _personsGetterService = personsGetterService;
             _personsAdderService = personsAdderService;
@@ -44,8 +43,6 @@ namespace crudBundle.Controllers
             _personsSorterService = personsSorterService;
 
             _countriesGetterService = countriesGetterService;
-            _countriesAdderService = countriesAdderService;
-            _countriesUploaderService = countriesUploaderService;
 
             _logger = logger;
         }
