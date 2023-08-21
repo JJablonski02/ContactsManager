@@ -8,10 +8,10 @@ namespace crudBundle.Controllers
 
     public class CountriesController : Controller
     {
-        private readonly ICountriesService _countriesService;
-        public CountriesController(ICountriesService countriesService)
+        private readonly ICountriesUploaderService _countriesUploaderService;
+        public CountriesController(ICountriesUploaderService countriesService)
         {
-            _countriesService= countriesService;
+            _countriesUploaderService= countriesService;
         }
 
         [Route("[action]")]
@@ -35,7 +35,7 @@ namespace crudBundle.Controllers
                 return View();
             }
 
-            int countriesCountInserted = await _countriesService.UploadCountriesFromExcelFile(excelFile);
+            int countriesCountInserted = await _countriesUploaderService.UploadCountriesFromExcelFile(excelFile);
 
             ViewBag.Message = $"{countriesCountInserted} Countries Uploaded ";
             return View();

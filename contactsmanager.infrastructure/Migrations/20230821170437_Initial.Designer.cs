@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactsManager.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230820212012_Initial")]
+    [Migration("20230821170437_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,7 +99,7 @@ namespace ContactsManager.Infrastructure.Migrations
                     b.Property<string>("TIN")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(8)")
-                        .HasDefaultValue("empty")
+                        .HasDefaultValue("ABC12345")
                         .HasColumnName("TaxIdentificationNumber");
 
                     b.HasKey("PersonID");

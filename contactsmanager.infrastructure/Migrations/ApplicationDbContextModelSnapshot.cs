@@ -97,7 +97,7 @@ namespace ContactsManager.Infrastructure.Migrations
                     b.Property<string>("TIN")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(8)")
-                        .HasDefaultValue("empty")
+                        .HasDefaultValue("ABC12345")
                         .HasColumnName("TaxIdentificationNumber");
 
                     b.HasKey("PersonID");

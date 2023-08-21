@@ -33,7 +33,7 @@ namespace ContactsManager.Infrastructure.Migrations
                     CountryID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     ReceiveNewsLetters = table.Column<bool>(type: "bit", nullable: false),
-                    TaxIdentificationNumber = table.Column<string>(type: "varchar(8)", nullable: true, defaultValue: "empty")
+                    TaxIdentificationNumber = table.Column<string>(type: "varchar(8)", nullable: true, defaultValue: "ABC12345")
                 },
                 constraints: table =>
                 {

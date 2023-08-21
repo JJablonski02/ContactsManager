@@ -27,17 +27,26 @@ namespace crudBundle.Controllers
         private readonly IPersonsSorterService _personsSorterService;
         private readonly IPersonsDeleterService _personsDeleterService;
         private readonly IPersonsUpdaterService _personsUpdaterService;
-        private readonly ICountriesService _countriesService;
+
+        private readonly ICountriesGetterService _countriesGetterService;
+        private readonly ICountriesAdderService _countriesAdderService;
+        private readonly ICountriesUploaderService _countriesUploaderService;
         private readonly ILogger<PersonsController> _logger;
 
-        public PersonsController(IPersonsGetterService personsGetterService, IPersonsAdderService personsAdderService, IPersonsDeleterService personsDeleterService, IPersonsUpdaterService personsUpdaterService, IPersonsSorterService personsSorterService, ICountriesService countriesService, ILogger<PersonsController> logger)
+        public PersonsController(IPersonsGetterService personsGetterService, IPersonsAdderService personsAdderService, 
+            IPersonsDeleterService personsDeleterService, IPersonsUpdaterService personsUpdaterService, IPersonsSorterService personsSorterService, 
+            ICountriesGetterService countriesGetterService, ICountriesAdderService countriesAdderService, ICountriesUploaderService countriesUploaderService, ILogger<PersonsController> logger)
         {
             _personsGetterService = personsGetterService;
             _personsAdderService = personsAdderService;
             _personsDeleterService = personsDeleterService;
             _personsUpdaterService = personsUpdaterService;
             _personsSorterService = personsSorterService;
-            _countriesService = countriesService;
+
+            _countriesGetterService = countriesGetterService;
+            _countriesAdderService = countriesAdderService;
+            _countriesUploaderService = countriesUploaderService;
+
             _logger = logger;
         }
 
@@ -74,7 +83,7 @@ namespace crudBundle.Controllers
 
         public async Task<IActionResult> Create()
         {
-            List<CountryResponse> countries = await _countriesService.GetAllCountries();
+            List<CountryResponse> countries = await _countriesGetterService.GetAllCountries();
             ViewBag.countries = countries.Select(temp => new SelectListItem()
             {
                 Text = temp.CountryName,
@@ -112,7 +121,7 @@ namespace crudBundle.Controllers
 
             PersonUpdateRequest personUpdateRequest = personResponse.ToPersonUpdateRequest();
 
-            List<CountryResponse> countries = await _countriesService.GetAllCountries();
+            List<CountryResponse> countries = await _countriesGetterService.GetAllCountries();
             ViewBag.Countries = countries.Select(temp =>
             new SelectListItem() { Text = temp.CountryName, Value = temp.CountryID.ToString() });
 

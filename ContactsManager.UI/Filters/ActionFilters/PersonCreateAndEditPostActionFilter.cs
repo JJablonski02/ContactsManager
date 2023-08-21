@@ -8,11 +8,11 @@ namespace crudBundle.Filters.ActionFilters
 {
     public class PersonCreateAndEditPostActionFilter : ActionFilterAttribute
     {
-        private readonly ICountriesService _countriesService;
+        private readonly ICountriesGetterService _countriesGetterService;
         private readonly ILogger<PersonCreateAndEditPostActionFilter> _logger;
-        public PersonCreateAndEditPostActionFilter(ICountriesService countriesService, ILogger<PersonCreateAndEditPostActionFilter> logger)
+        public PersonCreateAndEditPostActionFilter(ICountriesGetterService countriesService, ILogger<PersonCreateAndEditPostActionFilter> logger)
         {
-            _countriesService = countriesService;
+            _countriesGetterService = countriesService;
             _logger = logger;
         }
 
@@ -23,7 +23,7 @@ namespace crudBundle.Filters.ActionFilters
             {
                 if (!personsController.ModelState.IsValid)
                 {
-                    List<CountryResponse> countries = await _countriesService.GetAllCountries();
+                    List<CountryResponse> countries = await _countriesGetterService.GetAllCountries();
                     personsController.ViewBag.Countries = countries.Select(temp =>
                     new SelectListItem() { Text = temp.CountryName, Value = temp.CountryID.ToString() });
 

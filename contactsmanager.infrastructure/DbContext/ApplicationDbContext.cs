@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities
@@ -7,7 +9,6 @@ namespace Entities
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
-
         }
 
         public virtual DbSet<Country> Countries { get; set; }
@@ -40,17 +41,21 @@ namespace Entities
                 modelBuilder.Entity<Person>().HasData(person);
             }
 
+
             //Fluent API
             modelBuilder.Entity<Person>().Property(temp => temp.TIN)
-                .HasColumnName("TaxIdentificationNumber").HasColumnType("varchar(8)").HasDefaultValue("empty");
+                .HasColumnName("TaxIdentificationNumber").HasColumnType("varchar(8)").HasDefaultValue("ABC12345");
+
+            //modelBuilder.Entity<Person>()
+            //  .HasIndex(temp => temp.TIN).IsUnique();
 
             //modelBuilder.Entity<Person>().HasIndex(temp => temp.TIN).IsUnique();
             modelBuilder.Entity<Person>().HasCheckConstraint("CHK_TIN", "len([TaxIdentificationNumber]) = 8");
 
             //Table Relations
-            modelBuilder.Entity<Country>(entity =>
+            modelBuilder.Entity<Person>(entity =>
             {
-                entity.HasOne<Person>(c => c.Country).WithMany(p => p.Persons).HasForeignKey(p => p.CountryId);
+                entity.HasOne<Country>(c => c.Country).WithMany(p => p.Persons).HasForeignKey(p => p.CountryID);
             });
         }
 
