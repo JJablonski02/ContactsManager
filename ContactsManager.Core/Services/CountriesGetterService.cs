@@ -5,12 +5,12 @@ using Entities;
 
 namespace Services
 {
-    public class CountriesUploaderService : ICountriesGetterService
+    public class CountriesGetterService : ICountriesGetterService
     {
         private readonly ICountriesRepository _countriesRepository;
 
         //constructor
-        public CountriesUploaderService(ICountriesRepository countriesRepository)
+        public CountriesGetterService(ICountriesRepository countriesRepository)
         {
             _countriesRepository = countriesRepository;
         }

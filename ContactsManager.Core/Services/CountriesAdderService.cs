@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactsManager.Core.Services
+namespace Services
 {
 
     public class CountriesAdderService : ICountriesAdderService
