@@ -23,10 +23,12 @@ namespace crudBundle
             });
 
             //add services into IoC Container
+            services.AddScoped<ICountriesAdderService>();
+
             services.AddScoped<ICountriesRepository, CountriesRepository>();
             services.AddScoped<IPersonsRepository, PersonsRepository>();
 
-            services.AddScoped<ICountriesService, CountriesService>();
+            services.AddScoped<ICountriesService, CountriesUploaderService>();
 
             services.AddScoped<IPersonsGetterService, PersonsGetterServiceWithFewExcelFields>();
             services.AddScoped<PersonsGetterService, PersonsGetterService>();
