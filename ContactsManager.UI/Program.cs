@@ -1,12 +1,4 @@
-using ServiceContracts;
-using Services;
-using Microsoft.EntityFrameworkCore;
-using Entities;
-using RepositoryContracts;
-using Repositories;
-using Microsoft.AspNetCore.HttpLogging;
 using Serilog;
-using crudBundle.Filters.ActionFilters;
 using crudBundle;
 using crudBundle.Middleware;
 

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsManager.UI.Controllers
 {
-    [Route("[controller/[action]")]
+    [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         [HttpGet]
@@ -16,6 +16,7 @@ namespace ContactsManager.UI.Controllers
         [HttpPost]
         public IActionResult Register(RegisterDTO registerDTO)
         {
+            //TODO: Store user registration details into Identity database
             return RedirectToAction(nameof(PersonsController.Index), "Persons");
         }
     }
