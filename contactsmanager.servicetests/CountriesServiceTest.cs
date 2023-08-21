@@ -15,7 +15,6 @@ namespace crudTests
 
         private readonly ICountriesGetterService _countriesGetterService;
         private readonly ICountriesAdderService _countriesAdderService;
-        private readonly ICountriesUploaderService _countriesUploaderService;
 
         private readonly Mock<ICountriesRepository> _countriesRepositoryMock;
         private readonly ICountriesRepository _countriesRepository;
@@ -28,6 +27,7 @@ namespace crudTests
             _countriesRepositoryMock = new Mock<ICountriesRepository>();
             _countriesRepository = _countriesRepositoryMock.Object;
             _countriesGetterService = new CountriesGetterService(_countriesRepository);
+            _countriesAdderService = new CountriesAdderService(_countriesRepository);
 
             _fixture = new Fixture();
         }
