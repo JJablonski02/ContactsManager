@@ -1,6 +1,8 @@
-﻿using crudBundle.Filters.ActionFilters;
+﻿using ContactsManager.Core.Domain.IdentityEntities;
+using crudBundle.Filters.ActionFilters;
 using Entities;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using RepositoryContracts;
@@ -46,6 +48,11 @@ namespace crudBundle
                 });
 
             services.AddTransient<PersonsListActionFilter>();
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddUserStore<UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, Guid>>()
+                .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
             services.AddHttpLogging(options =>
             {
