@@ -2,6 +2,7 @@
 using crudBundle.Filters.ActionFilters;
 using Entities;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
@@ -55,7 +56,7 @@ namespace crudBundle
                 .AddRoleStore<RoleStore<ApplicationRole, ApplicationDbContext, Guid>>();
 
             services.AddHttpLogging(options =>
-            {
+            { 
                 options.LoggingFields = HttpLoggingFields.RequestProperties | HttpLoggingFields.ResponsePropertiesAndHeaders;
             });
 
