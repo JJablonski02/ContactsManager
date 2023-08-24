@@ -10,10 +10,12 @@ namespace ContactsManager.UI.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController (UserManager<ApplicationUser> userManager)
+        public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
 
@@ -36,9 +38,11 @@ namespace ContactsManager.UI.Controllers
 
             ApplicationUser applicationUser = new ApplicationUser() { Email = registerDTO.Email, PhoneNumber = registerDTO.Phone, UserName = registerDTO.Email, PersonName = registerDTO.PersonName };
 
-            IdentityResult result = await _userManager.CreateAsync(applicationUser);
+            IdentityResult result = await _userManager.CreateAsync(applicationUser, registerDTO.Password);
             if (result.Succeeded)
             {
+                //Sign in
+                await _signInManager.SignInAsync(applicationUser, isPersistent: true); //set true = If user close the webapp and does not log out, cookies authentication will be remembered and if user opens page, he still will be logged in. 
                 return RedirectToAction(nameof(PersonsController.Index), "Persons");
 
             }
