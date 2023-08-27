@@ -84,7 +84,7 @@ namespace ContactsManager.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(PersonsController.Index), "Index");
+            return RedirectToAction(nameof(PersonsController.Index), "Persons");
         }
     }
 }
