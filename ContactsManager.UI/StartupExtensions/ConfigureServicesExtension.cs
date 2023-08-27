@@ -70,7 +70,7 @@ namespace crudBundle
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LogoutPath = "~/Account/Login";
+                options.LogoutPath = "/Account/Login";
             });
 
             services.AddHttpLogging(options =>

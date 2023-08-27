@@ -65,7 +65,7 @@ namespace ContactsManager.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO, string? ReturnUrl)
         {
             if(ModelState.IsValid == false)
             {
@@ -76,6 +76,11 @@ namespace ContactsManager.UI.Controllers
             var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
+                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                {
+                    return LocalRedirect(ReturnUrl);
+                }
+
                 return RedirectToAction(nameof(PersonsController.Index), "Persons");
             }
 
@@ -87,6 +92,20 @@ namespace ContactsManager.UI.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(PersonsController.Index), "Persons");
+        }
+
+        public async Task<IActionResult> IsEmailAlreadyRegistered(string email)
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(email);
+
+            if(user == null)
+            {
+                return Json(true); // valid
+            }
+            else
+            {
+                return Json(false); // invalid
+            }
         }
     }
 }
