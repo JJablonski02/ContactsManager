@@ -37,6 +37,10 @@ else
     app.UseExceptionHandler("/Error");
     app.UseExceptionHandlingMiddleware();
 }
+
+app.UseHsts();
+app.UseHttpsRedirection();
+
 app.UseSerilogRequestLogging();
 
 app.UseHttpLogging();
@@ -56,6 +60,15 @@ app.UseRouting(); //Identifying action method based route
 app.UseAuthentication(); //Reading Identity cookie
 app.UseAuthorization(); //Validates access permissions of the user
 app.MapControllers(); //Execute the filter pipeline (action + filters)
+
+//Conventional routing
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}"); //Admin/home/index or //Admin <- default
+    endpoints.MapControllerRoute(name: "Default", pattern: "{controller}/{action}/{id?}");
+});
+
+
 
 app.Run();
 
