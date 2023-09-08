@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace crudBundle.Filters.AuthorizationFilters
 {
-    public class TokenAuthorizationFilter : IAsyncAuthorizationFilter
+    public class TokenAuthorizationFilter : IAuthorizationFilter
     {
-        public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
+        public void OnAuthorization(AuthorizationFilterContext context)
         {
             if (context.HttpContext.Request.Cookies.ContainsKey("Auth-Key") == false)
             {
