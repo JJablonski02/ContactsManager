@@ -8,7 +8,7 @@ using ServiceContracts.DTO;
 using ServiceContracts.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
+using Services;
 
 namespace crudTests
 {
@@ -167,6 +167,27 @@ namespace crudTests
         //TODO 
 
         //Tests for Edit/Delete/CSV/Excel/PDF
+
+        #endregion
+
+        #region Read
+
+        //[Fact]
+        //public async void Read_IfNoSqlErrors_ReturnIndex()
+        //{
+        //    PersonsGetterService persons_get_response = _fixture.Create<PersonsGetterService>();
+
+        //    PersonResponse personResponse = _fixture.Create<PersonResponse>();
+
+        //    List<CountryResponse> countryResponse = _fixture.Create<List<CountryResponse>>();
+
+        //    _countriesGetterServiceMock.Setup(option => option.GetAllCountries().Result);
+
+        //    _personsGetterServiceMock.Setup(option => option.GetAllPersons().Result);
+
+        //    PersonsController personsController = new PersonsController(_personsGetterService, _personsAdderService, _personsDeleterService, _personsUpdaterService, _personsSorterService, _countriesGetterService, _logger) ;
+        //}
+
 
         #endregion
     }
